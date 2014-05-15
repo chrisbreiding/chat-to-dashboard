@@ -15,10 +15,12 @@ commands =
     length ||= 10
     event: 'standup'
     response: "ALL RISE! Commence standup for #{length} minutes."
+  commands: ->
+    availableCommands = ("  /board #{command}" for command of commands).join '\n'
+    response: "Available commands:\n#{availableCommands}"
 
 unknownCommand = ->
-  availableCommands = ("/board #{command}" for command of commands).join ', '
-  response: "Unknown command sent. Try one of the following: #{availableCommands}"
+  response: "Unknown command sent. #{commands.commands().response}"
 
 determineCommand = (text)->
   [command, args...] = text.split ' '
@@ -32,7 +34,6 @@ app.post '/board', (req, res)->
     return res.send 403
 
   command = determineCommand req.body.text
-  console.log command
   if command.event
     pusher.trigger req.body.channel_name, command.event
   res.send 200, command.response
