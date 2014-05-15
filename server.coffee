@@ -10,11 +10,32 @@ pusher = new Pusher
 
 app.use bodyParser()
 
-app.post '/standup', (req, res)->
-  if req.body.token isnt process.env.STANDUP_TOKEN
+commands =
+  standup: (length)->
+    length ||= 10
+    event: 'standup'
+    response: "ALL RISE! Commence standup for #{length} minutes."
+
+unknownCommand = ->
+  availableCommands = ("/board #{command}" for command of commands).join ', '
+  response: "Unknown command sent. Try one of the following: #{availableCommands}"
+
+determineCommand = (text)->
+  [command, args...] = text.split ' '
+  if typeof commands[command] is 'function'
+    commands[command] args...
+  else
+    unknownCommand()
+
+app.post '/board', (req, res)->
+  if req.body.token isnt process.env.SLACK_BOARD_TOKEN
     return res.send 403
-  pusher.trigger req.body.channel_name, 'standup'
-  res.send 200, 'Standup triggered'
+
+  command = determineCommand req.body.text
+  console.log command
+  if command.event
+    pusher.trigger req.body.channel_name, command.event
+  res.send 200, command.response
 
 port = process.env.PORT || 5000
 app.listen port, ->

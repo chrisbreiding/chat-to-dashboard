@@ -3,7 +3,8 @@
   "private": true,
   "version": "0.0.1",
   "scripts": {
-    "install": "coffee --compile ."
+    "install": "coffee --compile .",
+    "dev": "foreman start -f Procfile_dev"
   },
   "engines": {
     "node": "0.10.26",
