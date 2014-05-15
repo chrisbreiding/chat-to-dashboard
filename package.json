@@ -3,8 +3,7 @@
   "private": true,
   "version": "0.0.1",
   "scripts": {
-    "install": "coffee --compile .",
-    "statr": "node server.js"
+    "install": "coffee --compile ."
   },
   "engines": {
     "node": "0.10.26",
