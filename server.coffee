@@ -1,4 +1,3 @@
-_ = require 'lodash'
 express = require 'express'
 bodyParser = require 'body-parser'
 Pusher = require 'pusher'
