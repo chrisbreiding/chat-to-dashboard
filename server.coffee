@@ -1,3 +1,4 @@
+_ = require 'lodash'
 express = require 'express'
 bodyParser = require 'body-parser'
 Pusher = require 'pusher'
@@ -11,12 +12,15 @@ pusher = new Pusher
 app.use bodyParser()
 
 commands =
-  standup: (length)->
-    length ||= 10
+  standup: (duration)->
+    duration = 10 if _.isNaN Number(duration)
+
     event: 'standup'
-    response: "ALL RISE! Commence standup for #{length} minutes."
+    data: duration: duration
+    response: "ALL RISE! Commence standup for #{duration} minutes."
   commands: ->
     availableCommands = ("  /board #{command}" for command of commands).join '\n'
+
     response: "Available commands:\n#{availableCommands}"
 
 unknownCommand = ->
@@ -35,7 +39,7 @@ app.post '/board', (req, res)->
 
   command = determineCommand req.body.text
   if command.event
-    pusher.trigger req.body.channel_name, command.event
+    pusher.trigger req.body.channel_name, command.event, command.data
   res.send 200, command.response
 
 port = process.env.PORT || 5000
