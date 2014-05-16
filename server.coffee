@@ -2,6 +2,7 @@ _ = require 'lodash'
 express = require 'express'
 bodyParser = require 'body-parser'
 Pusher = require 'pusher'
+commands = require './commands'
 
 app = express()
 pusher = new Pusher
@@ -11,33 +12,18 @@ pusher = new Pusher
 
 app.use bodyParser()
 
-commands =
-  standup: (duration)->
-    duration = 10 if _.isNaN Number(duration)
-
-    event: 'standup'
-    data: duration: duration
-    response: "ALL RISE! Commence standup for #{duration} minutes."
-  commands: ->
-    availableCommands = ("  /board #{command}" for command of commands).join '\n'
-
-    response: "Available commands:\n#{availableCommands}"
-
-unknownCommand = ->
-  response: "Unknown command sent. #{commands.commands().response}"
-
-determineCommand = (text)->
-  [command, args...] = text.split ' '
-  if typeof commands[command] is 'function'
-    commands[command] args...
-  else
-    unknownCommand()
+getCommand = (text)->
+  [type, args...] = text.split ' '
+  command = commands[type]
+  unless typeof command is 'function'
+    command = commands.unknown
+  command args...
 
 app.post '/board', (req, res)->
   if req.body.token isnt process.env.SLACK_BOARD_TOKEN
     return res.send 403
 
-  command = determineCommand req.body.text
+  command = getCommand req.body.text
   if command.event
     pusher.trigger req.body.channel_name, command.event, command.data
   res.send 200, command.response
