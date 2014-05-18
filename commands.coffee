@@ -1,51 +1,83 @@
 _ = require 'lodash'
 
-getArgs = (fn)->
-  matches = fn.toString().match /^function\s*\((.*)\)/
-  _.map matches[1].split(','), (arg)-> arg.trim()
-
 availableCommands = ->
-  for own type, command of commands when type isnt 'unknown'
-    args = getArgs(command)
-    args = if args.length and not _.isEmpty args[0]
-      _.map(args, (arg)-> "[#{arg}]").join(' ')
-    else
-      ''
-    "  /board #{type} #{args}"
+  command.desc for own type, command of commands when type isnt 'unknown'
+
+sounds =
+  trumpet: 'http://soundfxnow.com/soundfx/MilitaryTrumpetTune1.mp3'
+  buzzer: 'http://soundfxnow.com/soundfx/FamilyFeud-Buzzer3.mp3'
+  ping: 'http://rpg.hamsterrepublic.com/wiki-images/1/12/Ping-da-ding-ding-ding.ogg'
+  ding: 'http://soundfxnow.com/soundfx/GameshowBellDing2.mp3'
 
 commands =
 
-  standup: (duration)->
-    duration = 10 if _.isNaN Number(duration)
+  standup:
+    desc: """
+          /board standup [duration]
+            Trigger standup, make pivotal fullscreen for duration
+            Args:
+              duration - in minutes
+          """
+    response: (duration)->
+      duration = 10 if _.isNaN Number(duration)
 
-    event: 'standup'
-    data: duration: duration
-    response: "ALL RISE! Commence standup for #{duration} minutes."
+      event: 'standup'
+      data: duration: duration
+      message: "ALL RISE! Commence standup for #{duration} minutes."
 
-  reload: ->
-    event: 'reload'
-    response: 'Reloading board...'
+  reload:
+    desc: """
+          /board reload
+            Reload the board
+          """
+    response: ->
+      event: 'reload'
+      message: 'Reloading board...'
 
-  youtube: (id)->
-    unless id
-      return response: 'You must send an id to play a youtube video. Try: /board youtube [id]'
+  youtube:
+    desc: """
+          /board youtube [id]
+            Play YouTube video
+            Args:
+              id - YouTube video ID
+          """
+    response: (id)->
+      unless id
+        return message: 'You must send an id to play a youtube video. Try: /board youtube [id]'
 
-    event: 'youtube'
-    data: id: id
-    response: "Playing Youtube video with id '#{id}'..."
+      event: 'youtube'
+      data: id: id
+      message: "Playing Youtube video with id '#{id}'..."
 
-  sound: (url)->
-    unless url
-      return response: 'You must send a url with a sound to play it. Try: /board sound [url]'
+  sound:
+    desc: """
+          /board sound [sound]
+            Play a sound
+            Args:
+              sound - A url or an alias for a sound
+            Aliases: trumpet, buzzer, ping, ding
+          """
+    response: (sound)->
+      unless sound
+        return message: 'You must send the url or alias of the sound to play. Try: /board sound [url|alias]'
 
-    event: 'sound'
-    data: url: url
-    response: "Playing sound at url '#{url}'..."
+      if sounds[sound]
+        sound = sounds[sound]
 
-  list: ->
-    response: "Available commands:\n#{availableCommands().join('\n')}"
+      event: 'sound'
+      data: url: sound
+      message: "Playing sound at url '#{sound}'..."
 
-  unknown: ->
-    response: "Unknown command sent. #{commands.list().response}"
+  help:
+    desc: """
+          /board help
+            View available commands
+          """
+    response: ->
+      message: "Available commands:\n\n#{availableCommands().join('\n\n')}"
+
+  unknown:
+    response: ->
+      message: "Unknown command sent. #{commands.help.response().message}"
 
 module.exports = commands

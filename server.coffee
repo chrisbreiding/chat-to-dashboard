@@ -13,9 +13,9 @@ app.use bodyParser()
 
 getCommand = (text)->
   [type, args...] = text.split ' '
-  command = commands[type]
+  command = commands[type]?.response
   unless typeof command is 'function'
-    command = commands.unknown
+    command = commands.unknown.response
   command args...
 
 app.post '/board', (req, res)->
@@ -26,7 +26,7 @@ app.post '/board', (req, res)->
   if command.event
     console.log command.event
     pusher.trigger req.body.channel_name, command.event, (command.data || {})
-  res.send 200, command.response
+  res.send 200, command.message
 
 port = process.env.PORT || 5000
 app.listen port, ->
