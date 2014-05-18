@@ -8,6 +8,9 @@ sounds =
   buzzer: 'http://soundfxnow.com/soundfx/FamilyFeud-Buzzer3.mp3'
   ping: 'http://rpg.hamsterrepublic.com/wiki-images/1/12/Ping-da-ding-ding-ding.ogg'
   ding: 'http://soundfxnow.com/soundfx/GameshowBellDing2.mp3'
+  sad: 'http://soundfxnow.com/soundfx/Sad-Trombone.mp3'
+  crickets: 'http://soundfxnow.com/soundfx/Crickets.mp3'
+  drama: 'http://soundfxnow.com/soundfx/DramaScore.mp3'
 
 commands =
 
@@ -55,7 +58,7 @@ commands =
             Play a sound
             Args:
               sound - A url or an alias for a sound
-            Aliases: trumpet, buzzer, ping, ding
+            Aliases: #{_.keys(sounds).join(', ')}
           """
     response: (sound)->
       unless sound
