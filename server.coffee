@@ -24,7 +24,8 @@ app.post '/board', (req, res)->
 
   command = getCommand req.body.text
   if command.event
-    pusher.trigger req.body.channel_name, command.event, command.data
+    console.log command.event
+    pusher.trigger req.body.channel_name, command.event, (command.data || {})
   res.send 200, command.response
 
 port = process.env.PORT || 5000
