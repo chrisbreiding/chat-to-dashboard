@@ -24,7 +24,7 @@ commands =
 
   reload: ->
     event: 'reload'
-    response: 'Reload command sent.'
+    response: 'Reloading board...'
 
   youtube: (id)->
     unless id
@@ -32,15 +32,15 @@ commands =
 
     event: 'youtube'
     data: id: id
-    response: "Youtube video with id '#{id}' sent to board."
+    response: "Playing Youtube video with id '#{id}'..."
 
   sound: (url)->
     unless url
-      return response: 'You must send a url with a sound to play. Try: /board sound [url]'
+      return response: 'You must send a url with a sound to play it. Try: /board sound [url]'
 
     event: 'sound'
     data: url: url
-    response: "Sound at url '#{url}' send to play on board."
+    response: "Playing sound at url '#{url}'..."
 
   list: ->
     response: "Available commands:\n#{availableCommands().join('\n')}"
