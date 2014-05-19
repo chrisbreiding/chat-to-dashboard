@@ -8,7 +8,7 @@ sounds =
   buzzer: 'http://soundfxnow.com/soundfx/FamilyFeud-Buzzer3.mp3'
   ping: 'http://rpg.hamsterrepublic.com/wiki-images/1/12/Ping-da-ding-ding-ding.ogg'
   ding: 'http://soundfxnow.com/soundfx/GameshowBellDing2.mp3'
-  sad: 'http://soundfxnow.com/soundfx/Sad-Trombone.mp3'
+  fail: 'http://soundfxnow.com/soundfx/Sad-Trombone.mp3'
   crickets: 'http://soundfxnow.com/soundfx/Crickets.mp3'
   drama: 'http://soundfxnow.com/soundfx/DramaScore.mp3'
 
