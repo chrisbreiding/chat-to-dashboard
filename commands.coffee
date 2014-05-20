@@ -17,9 +17,9 @@ commands =
   standup:
     desc: """
           /board standup [duration]
-            Trigger standup, make pivotal fullscreen for duration
+            Trigger standup, make standup URL fullscreen for duration
             Args:
-              duration - in minutes
+              duration (optional) - Duration of standup in minutes - default: 10
           """
     response: (duration)->
       duration = 10 if _.isNaN Number(duration)
@@ -42,7 +42,7 @@ commands =
           /board youtube [id]
             Play YouTube video
             Args:
-              id - YouTube video ID
+              id (required) - YouTube video ID
           """
     response: (id)->
       unless id
@@ -57,7 +57,7 @@ commands =
           /board sound [sound]
             Play a sound
             Args:
-              sound - A url or an alias for a sound
+              sound (required) - A url or an alias for a sound
             Aliases: #{_.keys(sounds).join(', ')}
           """
     response: (sound)->
