@@ -1,13 +1,13 @@
 _ = require 'lodash'
 
 sounds =
-  trumpet: 'http://soundfxnow.com/soundfx/MilitaryTrumpetTune1.mp3'
   buzzer: 'http://soundfxnow.com/soundfx/FamilyFeud-Buzzer3.mp3'
-  ping: 'http://rpg.hamsterrepublic.com/wiki-images/1/12/Ping-da-ding-ding-ding.ogg'
-  ding: 'http://soundfxnow.com/soundfx/GameshowBellDing2.mp3'
-  fail: 'http://soundfxnow.com/soundfx/Sad-Trombone.mp3'
   crickets: 'http://soundfxnow.com/soundfx/Crickets.mp3'
+  ding: 'http://soundfxnow.com/soundfx/GameshowBellDing2.mp3'
   drama: 'http://soundfxnow.com/soundfx/DramaScore.mp3'
+  fail: 'http://soundfxnow.com/soundfx/Sad-Trombone.mp3'
+  ping: 'http://rpg.hamsterrepublic.com/wiki-images/1/12/Ping-da-ding-ding-ding.ogg'
+  trumpet: 'http://soundfxnow.com/soundfx/MilitaryTrumpetTune1.mp3'
 
 module.exports =
 
@@ -15,7 +15,7 @@ module.exports =
         /board sound [sound]
           Play a sound
           Args:
-            sound (required) - A url or an alias for a sound
+            sound (required) - URL or an alias for the sound
           Aliases: #{_.keys(sounds).join(', ')}
         """
 
