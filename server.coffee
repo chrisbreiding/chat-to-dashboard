@@ -1,6 +1,7 @@
 express = require 'express'
 bodyParser = require 'body-parser'
 Pusher = require 'pusher'
+_ = require 'lodash'
 commands = require './commands'
 
 app = express()
@@ -12,11 +13,11 @@ pusher = new Pusher
 app.use bodyParser()
 
 getCommand = (text)->
-  [type, args...] = text.split ' '
+  [ignore, type, argText] = text.match /(\w+)\s*(.*)/
   command = commands[type]?.response
   unless typeof command is 'function'
     command = commands.unknown.response
-  command args...
+  command (argText.trim() or undefined)
 
 app.post '/board', (req, res)->
   if req.body.token isnt process.env.SLACK_BOARD_TOKEN

@@ -16,7 +16,7 @@ commands =
 
   unknown:
     response: ->
-      message: "Unknown command sent. #{commands.help.response().message}"
+      message: "Unknown command. #{commands.help.response().message}"
 
 for fileName in fs.readdirSync("#{__dirname}/commands")
   command = fileName.split('.')[0]
