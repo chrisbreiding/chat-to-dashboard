@@ -27,7 +27,7 @@ app.post '/board', (req, res)->
   if command.event
     pusher.trigger req.body.channel_name, command.event, (command.data || {})
   message = "Command sent to board: /board #{req.body.text}\n\n#{command.message}"
-  res.send 200, message
+  res.send 200, text: message
 
 port = process.env.PORT || 5000
 app.listen port, ->
