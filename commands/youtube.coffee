@@ -2,7 +2,7 @@ module.exports =
 
   desc: """
         /board youtube [id]
-          Play YouTube video
+          Play a YouTube video
           Args:
             id (required) - YouTube video ID
         """

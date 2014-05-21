@@ -4,9 +4,10 @@ module.exports =
 
   desc: """
         /board image [url]
-        Args:
-          url (required) - URL for the image
-          duration (optional) - How long to display the image in seconds - default: 30
+          Display an image
+          Args:
+            url (required) - URL for the image
+            duration (optional) - How long to display the image in seconds - default: 30
         """
 
   response: (argText)->
