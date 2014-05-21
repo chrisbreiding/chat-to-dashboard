@@ -28,4 +28,4 @@ module.exports =
 
     event: 'sound'
     data: url: sound
-    message: "Playing sound at url '#{sound}'..."
+    message: "Playing sound..."

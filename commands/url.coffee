@@ -22,4 +22,4 @@ module.exports =
     data:
       url: url
       duration: duration
-    message: "Displaying web page at url '#{url}' for #{duration} seconds..."
+    message: "Displaying web page for #{duration} seconds..."
