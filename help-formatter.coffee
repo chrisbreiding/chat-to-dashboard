@@ -19,10 +19,10 @@ module.exports = (command)->
 
     args = _.map command.args, (arg)->
       dfault = if arg.default then " - default: #{arg.default}" else ''
-      "_#{arg.name}_ (#{arg.required}) #{arg.desc}#{dfault}"
+      "    _#{arg.name}_ (#{arg.required}) #{arg.desc}#{dfault}"
     """
     Args:
-      #{args.join '\n'}
+    #{args.join '\n'}
     """
 
   aliases: ->
