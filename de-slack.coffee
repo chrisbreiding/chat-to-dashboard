@@ -4,4 +4,4 @@ module.exports =
     url.replace /[<>]/g, ''
 
   text: (text)->
-    text.replace '&amp;', '&'
+    text.replace /\&amp\;/g, '&'
