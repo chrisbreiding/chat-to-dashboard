@@ -11,21 +11,23 @@ sounds =
 
 module.exports =
 
-  desc: """
-        *board sound [sound]*
-        Play a sound
-        Args:
-            _sound_ (required) URL or an alias for the sound
-        Aliases: #{_.keys(sounds).join(', ')}
-        """
+  name: 'sound'
+  desc: 'Play a sound'
+  args: [
+    name: 'sound'
+    required: 'required'
+    desc: 'URL or an alias for the sound'
+  ]
+  aliases: _.keys sounds
 
   response: (sound)->
     unless sound
-      return message: 'You must include the url or alias of the sound to play. Try: `board sound [url|alias]`'
+      suggestion = format(this).suggestion()
+      return message: "You must include the url or alias of the sound to play. #{suggestion}"
 
     if sounds[sound]
       sound = sounds[sound]
 
-    event: 'sound'
+    event: @name
     data: url: sound
     message: "Playing sound..."

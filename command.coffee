@@ -1,12 +1,11 @@
 fs = require 'fs'
 _ = require 'lodash'
+format = require './help-formatter'
 
 commands =
   help:
-    desc: """
-          *board help*
-          View available commands
-          """
+    name: 'help'
+    desc: 'View available commands'
     response: ->
       message: "Available commands:\n\n#{availableCommands().join('\n\n')}"
 
@@ -15,7 +14,7 @@ for fileName in fs.readdirSync("#{__dirname}/commands")
   commands[command] = require "./commands/#{command}"
 
 availableCommands = ->
-  command.desc for own type, command of commands
+  format(command).full() for own type, command of commands
 
 module.exports = (text)->
   [ignore, type, argText] = text.match /board\s+(\w+)\s*(.*)/

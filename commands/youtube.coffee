@@ -1,16 +1,18 @@
 module.exports =
 
-  desc: """
-        *board youtube [id]*
-        Play a YouTube video
-        Args:
-            _id_ (required) YouTube video ID
-        """
+  name: 'youtube'
+  desc: 'Play a YouTube video'
+  args: [
+    name: 'id'
+    required: 'required'
+    desc: 'YouTube video ID'
+  ]
 
   response: (id)->
     unless id
-      return message: 'You must include the id of the YouTube video. Try: `board youtube [id]`'
+      suggestion = format(this).suggestion()
+      return message: "You must include the id of the YouTube video. #{suggestion}"
 
-    event: 'youtube'
+    event: @name
     data: id: id
     message: "Playing Youtube video..."

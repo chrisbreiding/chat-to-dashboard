@@ -1,10 +1,8 @@
 module.exports =
 
-  desc: """
-        *board reload*
-        Reload the board
-        """
+  name: 'reload'
+  desc: 'Reload the board'
 
   response: ->
-    event: 'reload'
+    event: @name
     message: 'Reloading board...'
