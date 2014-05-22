@@ -27,7 +27,7 @@ app.post '/board', (req, res)->
   if command.event
     pusher.trigger req.body.channel_name, command.event, (command.data || {})
   response =
-    text: "_#{req.body.text}_\n\n#{command.message}"
+    text: command.message
     username: req.body.user_name
   res.send 200, response
 
