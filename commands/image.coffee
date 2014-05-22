@@ -1,7 +1,7 @@
 _ = require 'lodash'
 format = require '../help-formatter'
 
-module.exports =
+command =
 
   name: 'image'
   desc: 'Display an image'
@@ -20,7 +20,7 @@ module.exports =
     [url, duration] = argText.split /\s+/
 
     unless url
-      suggestion = format(this).suggestion()
+      suggestion = format(command).suggestion()
       return message: "You must include the url of the image to display. #{suggestion}"
 
     duration = 30 if _.isNaN Number(duration)
@@ -30,3 +30,5 @@ module.exports =
       url: url
       duration: duration
     message: "Displaying image for #{duration} seconds..."
+
+module.exports = command

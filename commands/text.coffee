@@ -1,6 +1,7 @@
 _ = require 'lodash'
+format = require '../help-formatter'
 
-module.exports =
+command =
 
   name: 'text'
   desc: 'Display some text'
@@ -17,7 +18,7 @@ module.exports =
   ]
 
   response: (argText)->
-    suggestion = format(this).suggestion()
+    suggestion = format(command).suggestion()
     try
       [ignore, ignore2, text, duration] = argText.match /(['"])(.*)\1\s*(\d+)?/
     catch e
@@ -33,3 +34,5 @@ module.exports =
       text: text
       duration: duration
     message: "Displaying text for #{duration} seconds..."
+
+module.exports = command

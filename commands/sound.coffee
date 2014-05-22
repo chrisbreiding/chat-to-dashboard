@@ -1,4 +1,5 @@
 _ = require 'lodash'
+format = require '../help-formatter'
 
 sounds =
   buzzer: 'http://soundfxnow.com/soundfx/FamilyFeud-Buzzer3.mp3'
@@ -9,7 +10,7 @@ sounds =
   ping: 'http://rpg.hamsterrepublic.com/wiki-images/1/12/Ping-da-ding-ding-ding.ogg'
   trumpet: 'http://soundfxnow.com/soundfx/MilitaryTrumpetTune1.mp3'
 
-module.exports =
+command =
 
   name: 'sound'
   desc: 'Play a sound'
@@ -22,7 +23,7 @@ module.exports =
 
   response: (sound)->
     unless sound
-      suggestion = format(this).suggestion()
+      suggestion = format(command).suggestion()
       return message: "You must include the url or alias of the sound to play. #{suggestion}"
 
     if sounds[sound]
@@ -31,3 +32,5 @@ module.exports =
     event: @name
     data: url: sound
     message: "Playing sound..."
+
+module.exports = command

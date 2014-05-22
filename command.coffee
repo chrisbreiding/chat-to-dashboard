@@ -33,4 +33,4 @@ module.exports = (text)->
   response = commands[type]?.response
   unless typeof response is 'function'
     return message: "Unknown command. #{commands.help.response().message}"
-  response (argText.trim() or undefined)
+  response argText.trim()

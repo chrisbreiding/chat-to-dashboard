@@ -1,4 +1,6 @@
-module.exports =
+format = require '../help-formatter'
+
+command =
 
   name: 'youtube'
   desc: 'Play a YouTube video'
@@ -10,9 +12,11 @@ module.exports =
 
   response: (id)->
     unless id
-      suggestion = format(this).suggestion()
+      suggestion = format(command).suggestion()
       return message: "You must include the id of the YouTube video. #{suggestion}"
 
     event: @name
     data: id: id
     message: "Playing Youtube video..."
+
+module.exports = command

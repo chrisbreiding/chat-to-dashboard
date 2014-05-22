@@ -1,6 +1,6 @@
 _ = require 'lodash'
 
-module.exports =
+command =
 
   name: 'standup'
   desc: 'Trigger standup, make standup URL fullscreen for duration'
@@ -17,3 +17,5 @@ module.exports =
     event: @name
     data: duration: duration
     message: "ALL RISE! Commence standup for #{duration} minutes."
+
+module.exports = command
