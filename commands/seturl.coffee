@@ -17,7 +17,7 @@ command =
 
   response: (argText)->
     unless argText
-      return event: 'seturl', message: 'Displaying pane IDs...'
+      return event: 'seturl'
 
     [paneId, url] = argText.split /\s+/
 
@@ -29,6 +29,5 @@ command =
     data:
       paneId: paneId
       url: deSlack.url url
-    message: "Setting pane ##{paneId} to #{url}..."
 
 module.exports = command

@@ -34,6 +34,5 @@ command =
     data:
       text: deSlack.text text
       duration: duration
-    message: "Displaying text for #{duration} seconds..."
 
 module.exports = command

@@ -5,6 +5,5 @@ command =
 
   response: ->
     event: 'reload'
-    message: 'Reloading board...'
 
 module.exports = command

@@ -32,6 +32,5 @@ command =
 
     event: 'sound'
     data: url: deSlack.url sound
-    message: "Playing sound..."
 
 module.exports = command

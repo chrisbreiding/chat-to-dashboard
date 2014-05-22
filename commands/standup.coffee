@@ -16,6 +16,5 @@ command =
 
     event: 'standup'
     data: duration: duration
-    message: "ALL RISE! Commence standup for #{duration} minutes."
 
 module.exports = command

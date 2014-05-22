@@ -30,6 +30,5 @@ command =
     data:
       url: deSlack.url url
       duration: duration
-    message: "Displaying web page for #{duration} seconds..."
 
 module.exports = command

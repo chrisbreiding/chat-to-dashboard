@@ -17,6 +17,5 @@ command =
 
     event: 'youtube'
     data: id: id
-    message: "Playing Youtube video..."
 
 module.exports = command
