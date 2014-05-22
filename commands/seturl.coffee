@@ -1,13 +1,5 @@
-_ = require 'lodash'
 format = require '../help-formatter'
 deSlack = require '../de-slack'
-
-responseObject = (paneId, url, message)->
-  event: 'seturl'
-  data:
-    paneId: paneId
-    url: url
-  message: message
 
 command =
 
@@ -25,7 +17,7 @@ command =
 
   response: (argText)->
     unless argText
-      return responseObject 'show', 'ids', 'Displaying pane IDs...'
+      return event: 'seturl', message: 'Displaying pane IDs...'
 
     [paneId, url] = argText.split /\s+/
 
@@ -33,7 +25,10 @@ command =
       suggestion = format(command).suggestion()
       return message: "You must include both the pane ID and the URL. #{suggestion}"
 
-    duration = 30 if _.isNaN parseInt(duration, 10)
-    responseObject paneId, deSlack.url(url), "Setting pane ##{paneId} to #{url}..."
+    event: 'seturl'
+    data:
+      paneId: paneId
+      url: deSlack.url url
+    message: "Setting pane ##{paneId} to #{url}..."
 
 module.exports = command
