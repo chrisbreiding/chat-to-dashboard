@@ -3,7 +3,7 @@ _ = require 'lodash'
 module.exports =
 
   desc: """
-        *board text "[text]"*
+        *board text "[text]" [duration]*
         Display an text
         Args:
             _text_ (required) The text to display, must be in quotes (single or double)

@@ -3,7 +3,7 @@ _ = require 'lodash'
 module.exports =
 
   desc: """
-        *board url [url]*
+        *board url [url] [duration]*
         Display a web page
         Args:
             _url_ (required) URL of web page to display

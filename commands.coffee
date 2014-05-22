@@ -8,8 +8,8 @@ commands =
 
   help:
     desc: """
-          /board help
-            View available commands
+          *board help*
+          View available commands
           """
     response: ->
       message: "Available commands:\n\n#{availableCommands().join('\n\n')}"

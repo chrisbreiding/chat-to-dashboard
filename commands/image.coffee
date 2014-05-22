@@ -3,7 +3,7 @@ _ = require 'lodash'
 module.exports =
 
   desc: """
-        *board image [url]*
+        *board image [url] [duration]*
         Display an image
         Args:
             _url_ (required) URL for the image
