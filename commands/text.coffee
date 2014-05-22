@@ -1,5 +1,6 @@
 _ = require 'lodash'
 format = require '../help-formatter'
+deSlack = require '../de-slack'
 
 command =
 
@@ -31,7 +32,7 @@ command =
 
     event: 'text'
     data:
-      text: text
+      text: deSlack.text text
       duration: duration
     message: "Displaying text for #{duration} seconds..."
 
