@@ -23,7 +23,7 @@ command =
       suggestion = format(command).suggestion()
       return message: "You must include the url of the image to display. #{suggestion}"
 
-    duration = 30 if _.isNaN Number(duration)
+    duration = 30 if _.isNaN parseInt(duration, 10)
 
     event: 'image'
     data:

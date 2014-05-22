@@ -27,7 +27,7 @@ command =
     unless text
       return message: "You must include the text (in quotes) to display. #{suggestion}"
 
-    duration = 30 if _.isNaN Number(duration)
+    duration = 30 if _.isNaN parseInt(duration, 10)
 
     event: 'text'
     data:

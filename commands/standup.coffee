@@ -12,7 +12,7 @@ command =
   ]
 
   response: (duration)->
-    duration = 10 if _.isNaN Number(duration)
+    duration = 10 if _.isNaN parseInt(duration, 10)
 
     event: 'standup'
     data: duration: duration
