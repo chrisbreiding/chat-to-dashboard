@@ -1,8 +1,8 @@
 module.exports =
 
   desc: """
-        /board reload
-          Reload the board
+        *board reload*
+        Reload the board
         """
 
   response: ->
