@@ -1,5 +1,6 @@
 _ = require 'lodash'
 format = require '../help-formatter'
+deSlack = require '../de-slack'
 
 sounds =
   buzzer: 'http://soundfxnow.com/soundfx/FamilyFeud-Buzzer3.mp3'
@@ -30,7 +31,7 @@ command =
       sound = sounds[sound]
 
     event: 'sound'
-    data: url: sound
+    data: url: deSlack.url sound
     message: "Playing sound..."
 
 module.exports = command

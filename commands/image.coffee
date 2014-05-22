@@ -1,5 +1,6 @@
 _ = require 'lodash'
 format = require '../help-formatter'
+deSlack = require '../de-slack'
 
 command =
 
@@ -27,7 +28,7 @@ command =
 
     event: 'image'
     data:
-      url: url
+      url: deSlack.url url
       duration: duration
     message: "Displaying image for #{duration} seconds..."
 
