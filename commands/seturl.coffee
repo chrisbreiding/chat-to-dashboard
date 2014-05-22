@@ -16,9 +16,16 @@ command =
     desc: 'URL to set the pane to'
   ]
 
+  _responseObject: (paneId, url, message)->
+    event: 'seturl'
+    data:
+      paneId: paneId
+      url: url
+    message: message
+
   response: (argText)->
     unless argText
-      return event: 'seturl', message: 'Displaying pane IDs...'
+      return @_responseObject null, null, 'Displaying pane IDs...'
 
     [paneId, url] = argText.split /\s+/
 
@@ -27,11 +34,6 @@ command =
       return message: "You must include both the pane ID and the URL. #{suggestion}"
 
     duration = 30 if _.isNaN parseInt(duration, 10)
-
-    event: 'seturl'
-    data:
-      paneId: paneId
-      url: deSlack.url url
-    message: "Setting pane ##{paneId} to #{url}..."
+    @_responseObject paneId, deSlack.url(url), "Setting pane ##{paneId} to #{url}..."
 
 module.exports = command
