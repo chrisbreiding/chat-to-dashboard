@@ -25,7 +25,7 @@ command =
 
   response: (argText)->
     unless argText
-      return @_responseObject null, null, 'Displaying pane IDs...'
+      return @_responseObject 'show', 'ids', 'Displaying pane IDs...'
 
     [paneId, url] = argText.split /\s+/
 
