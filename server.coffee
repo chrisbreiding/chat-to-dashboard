@@ -2,7 +2,7 @@ express = require 'express'
 bodyParser = require 'body-parser'
 Pusher = require 'pusher'
 _ = require 'lodash'
-commands = require './commands'
+getCommand = require './command'
 
 app = express()
 pusher = new Pusher
@@ -12,13 +12,6 @@ pusher = new Pusher
 
 app.use bodyParser()
 
-getCommand = (text)->
-  [ignore, type, argText] = text.match /board\s+(\w+)\s*(.*)/
-  command = commands[type]?.response
-  unless typeof command is 'function'
-    command = commands.unknown.response
-  command (argText.trim() or undefined)
-
 app.post '/board', (req, res)->
   if req.body.token isnt process.env.SLACK_BOARD_TOKEN
     return res.send 403
@@ -26,9 +19,11 @@ app.post '/board', (req, res)->
   command = getCommand req.body.text
   if command.event
     pusher.trigger req.body.channel_name, command.event, (command.data || {})
+
   response =
     text: command.message
     username: req.body.user_name
+
   res.send 200, response
 
 port = process.env.PORT || 5000
