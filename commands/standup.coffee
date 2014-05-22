@@ -14,7 +14,7 @@ command =
   response: (duration)->
     duration = 10 if _.isNaN Number(duration)
 
-    event: @name
+    event: 'standup'
     data: duration: duration
     message: "ALL RISE! Commence standup for #{duration} minutes."
 

@@ -4,7 +4,7 @@ command =
   desc: 'Reload the board'
 
   response: ->
-    event: @name
+    event: 'reload'
     message: 'Reloading board...'
 
 module.exports = command

@@ -25,7 +25,7 @@ command =
 
     duration = 30 if _.isNaN Number(duration)
 
-    event: @name
+    event: 'image'
     data:
       url: url
       duration: duration

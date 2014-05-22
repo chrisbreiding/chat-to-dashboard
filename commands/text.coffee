@@ -29,7 +29,7 @@ command =
 
     duration = 30 if _.isNaN Number(duration)
 
-    event: @name
+    event: 'text'
     data:
       text: text
       duration: duration

@@ -15,7 +15,7 @@ command =
       suggestion = format(command).suggestion()
       return message: "You must include the id of the YouTube video. #{suggestion}"
 
-    event: @name
+    event: 'youtube'
     data: id: id
     message: "Playing Youtube video..."
 

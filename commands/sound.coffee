@@ -29,7 +29,7 @@ command =
     if sounds[sound]
       sound = sounds[sound]
 
-    event: @name
+    event: 'sound'
     data: url: sound
     message: "Playing sound..."
 
