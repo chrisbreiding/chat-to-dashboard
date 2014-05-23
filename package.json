@@ -3,7 +3,8 @@
   "private": true,
   "version": "0.0.1",
   "scripts": {
-    "install": "coffee --compile .",
+    "prestart": "coffee --compile .",
+    "start": "node server.js",
     "dev": "foreman start -f Procfile_dev"
   },
   "engines": {
