@@ -18,10 +18,10 @@ command =
     default: 30
   ]
 
-  response: (argText, username)->
+  response: (argString, username)->
     suggestion = format(command).suggestion()
     try
-      [ignore, ignore2, text, duration] = argText.match /(['"])(.*)\1\s*(\d+)?/
+      [ignore, ignore2, text, duration] = argString.match /(['"])(.*)\1\s*(\d+)?/
     catch e
       return message: "The text command attempted was not formatted correctly. #{suggestion}"
 
@@ -33,7 +33,7 @@ command =
     event: 'text'
     data:
       text: deSlack.text text
-      sender: username
+      sender: user_name
       duration: duration
 
 module.exports = command

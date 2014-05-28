@@ -17,8 +17,8 @@ command =
     default: 30
   ]
 
-  response: (argText)->
-    [url, duration] = argText.split /\s+/
+  response: (argString)->
+    [url, duration] = argString.split /\s+/
 
     unless url
       suggestion = format(command).suggestion()

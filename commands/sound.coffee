@@ -22,7 +22,8 @@ command =
   ]
   aliases: _.keys sounds
 
-  response: (sound)->
+  response: (argString)->
+    sound = argString
     unless sound
       suggestion = format(command).suggestion()
       return message: "You must include the url or alias of the sound to play. #{suggestion}"

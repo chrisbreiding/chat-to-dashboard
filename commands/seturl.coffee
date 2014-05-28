@@ -15,11 +15,10 @@ command =
     desc: 'URL to set the pane to'
   ]
 
-  response: (argText)->
-    unless argText
-      return event: 'seturl'
+  response: (argString)->
+    return event: 'seturl' unless argString
 
-    [paneId, url] = argText.split /\s+/
+    [paneId, url] = argString.split /\s+/
 
     unless url
       suggestion = format(command).suggestion()

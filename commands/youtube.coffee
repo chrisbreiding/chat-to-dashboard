@@ -10,7 +10,8 @@ command =
     desc: 'YouTube video ID'
   ]
 
-  response: (id)->
+  response: (argString)->
+    id = argString
     unless id
       suggestion = format(command).suggestion()
       return message: "You must include the id of the YouTube video. #{suggestion}"

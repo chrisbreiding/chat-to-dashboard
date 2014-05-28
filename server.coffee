@@ -1,28 +1,18 @@
 express = require 'express'
 bodyParser = require 'body-parser'
-Pusher = require 'pusher'
 _ = require 'lodash'
-getCommand = require './command'
+executeCommand = require './execute-command'
 
 app = express()
-pusher = new Pusher
-  appId: process.env.PUSHER_APP_ID
-  key: process.env.PUSHER_KEY
-  secret: process.env.PUSHER_SECRET
-
 app.use bodyParser()
 
 app.post '/board', (req, res)->
   if req.body.token isnt process.env.SLACK_BOARD_TOKEN
     return res.send 403
 
-  command = getCommand req.body.text, req.body.user_name
-  if command.event
-    pusher.trigger req.body.channel_name, command.event, (command.data || {})
-
-  if command.message
-    response =
-      text: command.message
+  message = executeCommand _.clone(req.body, true)
+  if message
+    response = text: message
 
   res.send 200, response
 

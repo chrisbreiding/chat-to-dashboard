@@ -1,5 +1,4 @@
 fs = require 'fs'
-_ = require 'lodash'
 format = require './help-formatter'
 
 commands =
@@ -28,9 +27,8 @@ for fileName in fs.readdirSync("#{__dirname}/commands")
 availableCommands = ->
   format(command).command() for own type, command of commands
 
-module.exports = (text, username)->
-  [ignore, type, argText] = text.match /board\s+(\w+)\s*(.*)/
-  response = commands[type]?.response
-  unless typeof response is 'function'
-    return message: "Unknown command. #{commands.help.response().message}"
-  response argText.trim(), username
+unknownCommand =
+  response: -> message: "Unknown command. #{commands.help.response().message}"
+
+module.exports = (type)->
+  commands[type] or unknownCommand

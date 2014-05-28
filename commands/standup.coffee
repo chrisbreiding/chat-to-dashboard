@@ -11,7 +11,8 @@ command =
     default: 10
   ]
 
-  response: (duration)->
+  response: (argString)->
+    duration = argString
     duration = 10 if _.isNaN parseInt(duration, 10)
 
     event: 'standup'
