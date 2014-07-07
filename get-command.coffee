@@ -10,7 +10,8 @@ commands =
       required: 'optional'
       desc: 'Name of the command'
     ]
-    response: (command)->
+    response: (argString)->
+      command = argString
       if command and commands[command]
         return message: format(commands[command]).full()
       message: """
