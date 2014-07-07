@@ -33,7 +33,7 @@ command =
     event: 'text'
     data:
       text: deSlack.text text
-      sender: user_name
+      sender: username
       duration: duration
 
 module.exports = command
