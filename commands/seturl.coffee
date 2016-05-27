@@ -24,7 +24,7 @@ command =
       suggestion = format(command).suggestion()
       return message: "You must include both the pane ID and the URL. #{suggestion}"
 
-    event: 'seturl'
+    event: command.name
     data:
       paneId: paneId
       url: deSlack.url url

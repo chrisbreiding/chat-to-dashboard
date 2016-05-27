@@ -30,7 +30,7 @@ command =
 
     duration = 30 if _.isNaN parseInt(duration, 10)
 
-    event: 'text'
+    event: command.name
     data:
       text: deSlack.text text
       sender: username

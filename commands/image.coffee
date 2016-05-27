@@ -26,7 +26,7 @@ command =
 
     duration = 30 if _.isNaN parseInt(duration, 10)
 
-    event: 'image'
+    event: command.name
     data:
       url: deSlack.url url
       duration: duration

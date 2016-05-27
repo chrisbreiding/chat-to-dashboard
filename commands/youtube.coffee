@@ -16,7 +16,7 @@ command =
       suggestion = format(command).suggestion()
       return message: "You must include the id of the YouTube video. #{suggestion}"
 
-    event: 'youtube'
+    event: command.name
     data: id: id
 
 module.exports = command

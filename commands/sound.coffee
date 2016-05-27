@@ -18,7 +18,7 @@ command =
       suggestion = format(command).suggestion()
       return message: "You must include the url or alias of the sound to play. #{suggestion}"
 
-    event: 'sound'
+    event: command.name
     data: sound: deSlack.url sound
 
 module.exports = command
