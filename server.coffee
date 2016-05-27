@@ -4,7 +4,8 @@ _ = require 'lodash'
 executeCommand = require './execute-command'
 
 app = express()
-app.use bodyParser()
+app.use bodyParser.urlencoded(extended: false)
+app.use bodyParser.json()
 
 app.post '/board', (req, res)->
   if req.body.token isnt process.env.SLACK_BOARD_TOKEN
