@@ -8,8 +8,11 @@ command =
   ]
 
   response: (argString, username)->
+    shouldEnd = argString is 'end'
+
     event: command.name
+    message: if shouldEnd then null else "Sharing at http://appear.in/cypress"
     data:
-      end: argString is 'end'
+      end: shouldEnd
 
 module.exports = command
