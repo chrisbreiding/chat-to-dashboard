@@ -11,7 +11,7 @@ command =
     shouldEnd = argString is 'end'
 
     event: command.name
-    message: if shouldEnd then null else "Sharing at http://appear.in/cypress"
+    message: if shouldEnd then null else "Sharing at https://appear.in/cypress"
     data:
       end: shouldEnd
 
